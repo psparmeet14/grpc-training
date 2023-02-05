@@ -39,7 +39,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.parmeet.grpc.App'
+    //mainClass = 'com.parmeet.grpc.App'
 }
 
 tasks.named('test') {
