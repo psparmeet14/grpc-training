@@ -50,14 +50,22 @@ tasks.named('test') {
 protobuf {
     protoc {
         // The artifact spec for the Protobuf Compiler
-        artifact = 'com.google.protobuf:protoc:21.0-rc-1:osx-aarch_64'
+        if (osdetector.os == "osx") {
+            artifact = 'com.google.protobuf:protoc:21.0-rc-1:osx-aarch_64'
+        } else {
+            artifact = 'com.google.protobuf:protoc:3.21.9'
+        }
     }
     plugins {
         // Optional: an artifact spec for a protoc plugin, with "grpc" as
         // the identifier, which can be referred to in the "plugins"
         // container of the "generateProtoTasks" closure.
         grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.52.1:osx-aarch_64'
+            if (osdetector.os == "osx") {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.52.1:osx-aarch_64'
+            } else {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.52.1'
+            }
         }
     }
     generateProtoTasks {
