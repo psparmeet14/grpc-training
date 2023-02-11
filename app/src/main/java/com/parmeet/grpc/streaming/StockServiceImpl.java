@@ -11,7 +11,6 @@ public class StockServiceImpl extends StockQuoteProviderGrpc.StockQuoteProviderI
 
     @Override
     public void serverSideStreamingGetListStockQuotes(Stock request, StreamObserver<StockQuote> responseObserver) {
-
         for (int i = 1; i <= 5; i++) {
             StockQuote stockQuote = StockQuote.newBuilder()
                     .setPrice(fetchStockPriceBid(request))

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package org.parmeet.stockquotegrpc;
+
+option java_multiple_files = true;
+option java_outer_classname = "StockQuoteProto";
+option objc_class_prefix = "RTG";
+
+message Stock {
+  string ticker_symbol = 1;
+  string company_name = 2;
+  string description = 3;
+}
+
+message StockQuote {
+  double price = 1;
+  int32 offer_number = 2;
+  string description = 3;
+}
+
+enum FooBar {
+  FOO_BAR_UNSPECIFIED = 0;
+  FOO_BAR_FIRST_VALUE = 1;
+  FOO_BAR_SECOND_VALUE = 2;
+}
+
+service StockQuoteProvider {
+  rpc ServerSideStreamingGetListStockQuotes(Stock) returns (stream StockQuote);
+  rpc ClientSideStreamingGetStatisticsOfStocks(stream Stock) returns (StockQuote);
+  rpc BidirectionalStreamingGetListsStockQuotes(stream Stock) returns (stream StockQuote);
+}
